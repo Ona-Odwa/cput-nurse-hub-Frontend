@@ -2,6 +2,7 @@ import axios from 'axios';
 import { UserRole } from '@/contexts/AuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+const USE_MOCK_AUTH = import.meta.env.VITE_USE_MOCK_AUTH !== 'false'; // Default to true for demo
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -47,6 +48,56 @@ export const apiService = {
 
   // Auth endpoints
   login: async (email: string, password: string, role: UserRole) => {
+    // Mock authentication for demo purposes
+    if (USE_MOCK_AUTH) {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      // Mock credentials: password is 'demo123' for all users
+      if (password !== 'demo123') {
+        throw {
+          response: {
+            data: { message: 'Invalid credentials. Use password: demo123' }
+          }
+        };
+      }
+
+      // Mock user data based on role
+      const mockUsers = {
+        student: {
+          token: 'mock-jwt-token-student',
+          user: {
+            id: 'student-001',
+            name: 'Sarah Johnson',
+            email: email,
+            role: 'student' as UserRole,
+            studentNumber: '220123456',
+          }
+        },
+        staff: {
+          token: 'mock-jwt-token-staff',
+          user: {
+            id: 'staff-001',
+            name: 'Dr. Michael Chen',
+            email: email,
+            role: 'staff' as UserRole,
+            staffId: 'STAFF-456',
+          }
+        },
+        admin: {
+          token: 'mock-jwt-token-admin',
+          user: {
+            id: 'admin-001',
+            name: 'Admin User',
+            email: email,
+            role: 'admin' as UserRole,
+          }
+        }
+      };
+
+      return mockUsers[role];
+    }
+
     const response = await apiClient.post('/auth/login', { email, password, role });
     return response.data;
   },
