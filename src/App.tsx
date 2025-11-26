@@ -12,6 +12,7 @@ import StudentAttendance from "./pages/student/StudentAttendance";
 import StudentDocuments from "./pages/student/StudentDocuments";
 import StudentProgress from "./pages/student/StudentProgress";
 import StudentIncidents from "./pages/student/StudentIncidents";
+import StudentPlacements from "./pages/student/StudentPlacements";
 import StaffDashboard from "./pages/staff/StaffDashboard";
 import StaffStudents from "./pages/staff/StaffStudents";
 import StaffDocuments from "./pages/staff/StaffDocuments";
@@ -24,6 +25,8 @@ import AdminReports from "./pages/admin/AdminReports";
 import AdminIncidents from "./pages/admin/AdminIncidents";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminRoles from "./pages/admin/AdminRoles";
+import Messages from "./pages/Messages";
+import Settings from "./pages/Settings";
 import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
 
@@ -82,6 +85,30 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
+            <Route 
+              path="/student/placements" 
+              element={
+                <ProtectedRoute allowedRoles={['student']}>
+                  <StudentPlacements />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/student/messages" 
+              element={
+                <ProtectedRoute allowedRoles={['student']}>
+                  <Messages />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/student/settings" 
+              element={
+                <ProtectedRoute allowedRoles={['student']}>
+                  <Settings />
+                </ProtectedRoute>
+              } 
+            />
             
             {/* Staff Routes */}
             <Route 
@@ -121,6 +148,22 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={['staff']}>
                   <StaffReports />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/staff/messages" 
+              element={
+                <ProtectedRoute allowedRoles={['staff']}>
+                  <Messages />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/staff/settings" 
+              element={
+                <ProtectedRoute allowedRoles={['staff']}>
+                  <Settings />
                 </ProtectedRoute>
               } 
             />
@@ -179,6 +222,14 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={['admin']}>
                   <AdminRoles />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin/messages" 
+              element={
+                <ProtectedRoute allowedRoles={['admin']}>
+                  <Messages />
                 </ProtectedRoute>
               } 
             />
