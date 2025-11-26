@@ -15,7 +15,9 @@ import {
   Upload,
   TrendingUp,
   ClipboardList,
-  Shield
+  Shield,
+  MapPin,
+  MessageSquare
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -37,9 +39,12 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const studentNav = [
     { to: '/student/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { to: '/student/attendance', icon: Calendar, label: 'Log Attendance' },
+    { to: '/student/placements', icon: MapPin, label: 'Placements' },
     { to: '/student/documents', icon: Upload, label: 'Documents' },
     { to: '/student/progress', icon: TrendingUp, label: 'Progress' },
     { to: '/student/incidents', icon: AlertCircle, label: 'Report Incident' },
+    { to: '/student/messages', icon: MessageSquare, label: 'Messages' },
+    { to: '/student/settings', icon: Settings, label: 'Settings' },
   ];
 
   const staffNav = [
@@ -48,6 +53,8 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { to: '/staff/documents', icon: FileText, label: 'Review Documents' },
     { to: '/staff/notes', icon: ClipboardList, label: 'Notes & Feedback' },
     { to: '/staff/reports', icon: FileText, label: 'Reports' },
+    { to: '/staff/messages', icon: MessageSquare, label: 'Messages' },
+    { to: '/staff/settings', icon: Settings, label: 'Settings' },
   ];
 
   const adminNav = [
@@ -58,6 +65,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { to: '/admin/incidents', icon: AlertCircle, label: 'Incidents' },
     { to: '/admin/settings', icon: Settings, label: 'System Settings' },
     { to: '/admin/roles', icon: Shield, label: 'Roles & Permissions' },
+    { to: '/admin/messages', icon: MessageSquare, label: 'Messages' },
   ];
 
   const navItems = user?.role === 'student' ? studentNav : user?.role === 'staff' ? staffNav : adminNav;
