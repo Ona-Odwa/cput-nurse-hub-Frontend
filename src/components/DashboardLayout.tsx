@@ -73,11 +73,11 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
-      <aside className="w-64 border-r bg-card shadow-sm">
+      <aside className="w-64 border-r bg-card shadow-sm flex flex-col">
         <div className="flex h-16 items-center justify-between border-b px-6">
           <h1 className="text-lg font-bold text-primary">CPUT Nursing</h1>
         </div>
-        <nav className="flex flex-col gap-1 p-4">
+        <nav className="flex flex-col gap-1 p-4 flex-1">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -90,6 +90,12 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </NavLink>
           ))}
         </nav>
+        <div className="p-4 border-t">
+          <Button variant="outline" onClick={logout} className="w-full justify-start">
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </div>
       </aside>
 
       {/* Main Content */}
@@ -103,10 +109,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </div>
           <div className="flex items-center gap-4">
             <img src={cputLogo} alt="CPUT Logo" className="h-12 w-auto" />
-            <Button variant="outline" onClick={logout}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </Button>
           </div>
         </header>
         <main className="p-6 bg-muted/30">{children}</main>
