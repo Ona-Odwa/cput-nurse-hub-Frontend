@@ -89,13 +89,15 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               {item.label}
             </NavLink>
           ))}
-        </nav>
-        <div className="p-4 border-t">
-          <Button variant="outline" onClick={logout} className="w-full justify-start">
-            <LogOut className="mr-2 h-4 w-4" />
+          <Button 
+            variant="ghost" 
+            onClick={logout} 
+            className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground justify-start mt-1"
+          >
+            <LogOut className="h-5 w-5" />
             Logout
           </Button>
-        </div>
+        </nav>
       </aside>
 
       {/* Main Content */}
